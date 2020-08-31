@@ -330,3 +330,18 @@ export function importDecks() {
     }
   });
 }
+
+export function addCard(card, title) {
+  importDecks()
+    .then((decks) => {
+      return {
+        ...decks,
+        [title]: {
+          questions: decks[title].questions.concat([card]),
+        },
+      };
+    })
+    .then((newDecks) => {
+      AsyncStorage.setItem(DECK_STORAGE, JSON.stringify(newDecks));
+    });
+}

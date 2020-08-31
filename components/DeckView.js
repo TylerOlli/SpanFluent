@@ -20,7 +20,13 @@ class DeckView extends Component {
           style={styles.addButton}
           onPress={() => navigation.navigate('Quiz', { deckId: title })}
         >
-          <Text style={styles.buttonTextDark}>Start Quiz</Text>
+          <Text>Start Quiz</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => navigation.navigate('NewCard', { deckId: title })}
+        >
+          <Text>Add New Card</Text>
         </TouchableOpacity>
       </View>
     );
