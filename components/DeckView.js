@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 class DeckView extends Component {
@@ -10,12 +10,18 @@ class DeckView extends Component {
   };
 
   render() {
-    const { questions, title } = this.props;
+    const { questions, title, navigation } = this.props;
     this.setTitle(title);
     return (
       <View style={styles.container}>
         <Text>{title}</Text>
         <Text>{questions.length} cards</Text>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => navigation.navigate('Quiz', { deckId: title })}
+        >
+          <Text style={styles.buttonTextDark}>Start Quiz</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -27,6 +33,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#007bff',
+  },
+  addButton: {
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    height: 40,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
   },
 });
 
